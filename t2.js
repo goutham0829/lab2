@@ -1,14 +1,23 @@
-function updateEmployeeDetails(employee,new_role)
-{
-    return {
-        ...employee,
-        role:new_role
+const http = require('http');
+const url = require('url');
+const server = http.createServer((req, res) => {
+    let arr = req.url.split('?');
+    let value = arr[1];
+    if (arr[0] == '/greet' && value) {
+        const queryParams = value.split('&');
+        const obj = {};
+        queryParams.forEach(param => {
+            const [key, value] = param.split('=');
+            obj[key] = value;
+        });
+        if (obj.name) {
+            res.writeHead(200, { 'Content-Type': 'text/plain' });
+            res.write(`hello ${obj.name}`);
+        }
     }
-}
-const employee = {
-    name: 'Afroz',
-    role: 'Developer', 
-    age: '28', 
-    location: 'IN'
-}
-console.log(updateEmployeeDetails (employee, 'Senior Developer'))
+    res.end();
+});
+server.listen(4000,() => {
+        console.log('connected');
+    }
+);

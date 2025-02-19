@@ -1,11 +1,23 @@
-function calculate_total(...num)
-{
-    let total = 0;
-    for(let i of num)
-    {
-        total += i;
-    }
-    return total;
-}
-let res=calculate_total(10,10,10);
-console.log(res);
+        const http=require('http');
+        const Server=http.createServer((req,res)=>{
+            if(req.url=='/'){
+                res.write('main page');
+                res.end('root');
+            }
+            else if(req.url=='/home'){
+                res.write('welcome to home');
+                res.end();
+            }
+            else if(req.url=='/about'){
+                res.write('about us');
+                res.end();
+            }
+            else if(req.url=='/contact'){
+                res.write('contact us');
+                res.end();
+            }
+        });
+        Server.listen(4000,() => {
+            console.log('Server is running on port 4000');
+        });
+
