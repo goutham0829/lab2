@@ -1,23 +1,29 @@
-const http = require('http');
-const url = require('url');
-const server = http.createServer((req, res) => {
-    let arr = req.url.split('?');
-    let value = arr[1];
-    if (arr[0] == '/greet' && value) {
-        const queryParams = value.split('&');
-        const obj = {};
-        queryParams.forEach(param => {
-            const [key, value] = param.split('=');
-            obj[key] = value;
-        });
-        if (obj.name) {
-            res.writeHead(200, { 'Content-Type': 'text/plain' });
-            res.write(`hello ${obj.name}`);
-        }
-    }
-    res.end();
+const express = require('express');
+const app = express();
+const data = require('./emp.json');
+const path = require('path');
+
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));  // Ensure views directory is set
+
+app.use(express.json());
+
+app.get('/', (req, res) => {
+    return res.status(200).send('This is root');
 });
-server.listen(4000,() => {
-        console.log('connected');
+
+app.get('/home', (req, res) => {
+    res.status(200).send('This is home page');
+});
+
+app.listen(3000, (req, err) => {
+    if (err) {
+        console.error('Error starting server', err);
+    } else {
+        console.log('Server connected at port http://localhost:3000');
     }
-);
+});
+
+app.get('/emp', (req, res) => {
+    res.render('emp', { message: "Employees can be accessed", data: data });
+});

@@ -1,0 +1,32 @@
+[
+    {
+        "id":101,
+        "name":"John",
+        "age":30,
+        "dpt":"cse"
+    }
+    {
+        "id":102,
+        "name":"Jane",
+        "age":31,
+        "dpt":"ece"
+    }
+    {
+        "id":103,
+        "name":"Bob",
+        "age":32,
+        "dpt":"mech"
+    }
+    {
+        "id":104,
+        "name":"dane",
+        "age":33,
+        "dpt":"cse"
+    }
+    {
+        "id":105,
+        "name":"canny",
+        "age":34,
+        "dpt":"mech"
+    }
+]
